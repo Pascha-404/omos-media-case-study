@@ -1,9 +1,13 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
 export default defineComponent({
   props: {
-    text: { type: String, required: true }
+    text: {
+      type: String as PropType<string>,
+      required: true,
+      default: 'Provide a text property'
+    }
   }
 })
 </script>
