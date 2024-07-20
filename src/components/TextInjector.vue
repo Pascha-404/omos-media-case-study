@@ -1,10 +1,7 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
+import type { IAttributes } from '@/types';
 import attributesToObject from '@/utils/attributesToObject';
-
-interface IAttributes {
-    [key: string]: string;
-}
 
 export default defineComponent({
     props: {
