@@ -2,6 +2,10 @@
 import { defineComponent, type PropType } from 'vue';
 import attributesToObject from '@/utils/attributesToObject';
 
+interface IAttributes {
+    [key: string]: string;
+}
+
 export default defineComponent({
     props: {
         text: {
@@ -13,6 +17,11 @@ export default defineComponent({
             type: Object as PropType<HTMLElement>,
             required: true,
         },
+        newAttributes: {
+            type: Object as PropType<IAttributes>,
+            required: false,
+            default: () => ({}),
+        },
     },
     data() {
         return {
@@ -20,9 +29,21 @@ export default defineComponent({
             attributes: attributesToObject(this.el.attributes),
         };
     },
+    computed: {
+        mergedAttributes(): IAttributes {
+            const filteredAttributes = Object.keys(this.attributes).reduce((acc, key) => {
+                if (!Object.prototype.hasOwnProperty.call(this.newAttributes, key)) {
+                    acc[key] = this.attributes[key];
+                }
+                return acc;
+            }, {} as IAttributes);
+
+            return { ...filteredAttributes, ...this.newAttributes };
+        },
+    },
 });
 </script>
 
 <template>
-    <component :is="tagName" v-bind="attributes">{{ text }}</component>
+    <component :is="tagName" v-bind="mergedAttributes">{{ text }}</component>
 </template>
