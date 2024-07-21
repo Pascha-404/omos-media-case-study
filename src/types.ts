@@ -4,6 +4,12 @@ interface IAttributes {
     [key: string]: string;
 }
 
+interface IInjectorProps {
+    text?: string;
+    el: HTMLElement;
+    newAttributes?: IAttributes;
+}
+
 interface IInjectionBase {
     injectionType: TInjectionType;
     selector: { attribute: string; value: string };
@@ -14,4 +20,4 @@ interface ITextInjection extends IInjectionBase {
     newAttributes?: IAttributes;
 }
 
-export type { IAttributes, IInjectionBase, ITextInjection };
+export type { IAttributes, IInjectionBase, ITextInjection, IInjectorProps };
