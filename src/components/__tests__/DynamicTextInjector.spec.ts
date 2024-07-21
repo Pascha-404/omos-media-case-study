@@ -19,12 +19,11 @@ describe('DynamicTextInjector', () => {
     it('renders the initial text correctly', () => {
         const wrapper = mount(DynamicTextInjector, {
             props: {
-                initialText:
+                text:
                     'Please select between 1 and 5 products: Current total {count} more items',
                 dynamicPlaceholder: '{count}',
                 maxCount: 5,
-                linkedInputSelector: 'data-pf-type',
-                linkedInputSelectorValue: 'QuantityField',
+                linkedInput: { selector: 'data-pf-type', value: 'QuantityField' },
             },
         });
 
@@ -34,12 +33,11 @@ describe('DynamicTextInjector', () => {
     it('updates the text when input value changes', async () => {
         const wrapper = mount(DynamicTextInjector, {
             props: {
-                initialText:
+                text:
                     'Please select between 1 and 5 products: Current total {count} more items',
                 dynamicPlaceholder: '{count}',
                 maxCount: 5,
-                linkedInputSelector: 'data-pf-type',
-                linkedInputSelectorValue: 'QuantityField',
+                linkedInput: { selector: 'data-pf-type', value: 'QuantityField' },
             },
         });
 
