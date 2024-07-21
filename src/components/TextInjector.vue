@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-text-v-html-on-component -->
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
 import type { IAttributes } from '@/types';
@@ -42,5 +43,5 @@ export default defineComponent({
 </script>
 
 <template>
-    <component :is="tagName" v-bind="mergedAttributes">{{ text }}</component>
+    <component :is="tagName" v-bind="mergedAttributes" v-html="text"></component>
 </template>
