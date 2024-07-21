@@ -33,7 +33,7 @@ const textInjectionContent: ITextInjection[] = [
         injectionType: 'text',
         selector: { attribute: 'data-pf-type', value: 'Heading2' },
         content: {
-            original: 'Same day delivery if you order till:',
+            original: 'Same day delivery if you ordet till:',
             translation: 'Lieferung am selben Tag, wenn Sie bestellen bis:',
         },
     },
@@ -51,7 +51,7 @@ const buttonInjectionContent: ITextInjection[] = [
     {
         injectionType: 'text',
         selector: { attribute: 'name', value: 'add' },
-        content: { original: 'Add to Cart', translation: 'In den Warenkorb' },
+        content: { original: 'Add To Cart', translation: 'In den Warenkorb' },
         newAttributes: {
             ['data-soldout']: 'Ausverkauft',
             ['data-adding']: 'Füge hinzu...',
