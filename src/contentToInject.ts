@@ -1,4 +1,4 @@
-import type { IInjectionBase, ITextInjection } from './types';
+import type { IDynamicTextInjection, IInjectionBase, ITextInjection } from './types';
 
 const textInjectionContent: ITextInjection[] = [
     {
@@ -65,7 +65,7 @@ const dateTimeInjectionContent: IInjectionBase = {
     selector: { attribute: 'id', value: 'current-date-time' },
 };
 
-const availableItemsContent: ITextInjection = {
+const availableItemsContent: IDynamicTextInjection = {
     injectionType: 'dynamicText',
     selector: { attribute: 'id', value: 'available-items' },
     content: {
@@ -73,6 +73,7 @@ const availableItemsContent: ITextInjection = {
         translation:
             'Bitte wählen Sie zwischen 1 und 5 Produkten: Aktuelle Gesamtmenge {count} weitere Artikel',
     },
+    linkedInput: { selector: 'data-pf-type', value: 'QuantityField' },
 };
 
 export {
