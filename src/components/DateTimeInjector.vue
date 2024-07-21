@@ -4,6 +4,7 @@ export default defineComponent({
     data() {
         return {
             currentDateTime: '',
+            id: 'current-date-time',
         };
     },
     methods: {
@@ -25,4 +26,6 @@ export default defineComponent({
 });
 </script>
 
-<template>{{ currentDateTime }}</template>
+<template>
+    <div :id="id">{{ currentDateTime }}</div>
+</template>
