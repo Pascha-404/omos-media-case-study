@@ -1,4 +1,4 @@
-type TInjectionType = 'text' | 'dateTime';
+type TInjectionType = 'text' | 'dateTime' | 'dynamicText';
 
 interface IAttributes {
     [key: string]: string;
