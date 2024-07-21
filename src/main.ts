@@ -12,8 +12,10 @@ import {
     textInjectionContent,
     buttonInjectionContent,
     dateTimeInjectionContent,
+    availableItemsContent,
 } from './contentToInject';
-import type { IInjectionBase, ITextInjection } from './types';
+import type { IDynamicTextInjection, IInjectionBase, ITextInjection } from './types';
+import DynamicTextInjector from './components/DynamicTextInjector.vue';
 
 // Function to handle text injections
 const handleTextInjections = (injections: ITextInjection[]) => {
@@ -79,6 +81,22 @@ const handleDateTimeInjection = (injection: IInjectionBase) => {
     }
 };
 
+const handleQuantityInjection = (injection: IDynamicTextInjection) => {
+    const domElement = document.querySelector(`#${injection.selector.value}`);
+
+    if (domElement instanceof HTMLElement) {
+        injector(DynamicTextInjector, {
+            el: domElement,
+            text: injection.content.translation,
+            linkedInput: {
+                selector: injection.linkedInput.selector,
+                value: injection.linkedInput.value,
+            },
+        });
+    }
+};
+
 handleTextInjections(textInjectionContent);
 handleButtonInjections(buttonInjectionContent);
 handleDateTimeInjection(dateTimeInjectionContent);
+handleQuantityInjection(availableItemsContent);
