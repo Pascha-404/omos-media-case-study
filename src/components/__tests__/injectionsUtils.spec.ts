@@ -4,6 +4,7 @@ import {
     findElementsByAttribute,
     findInjection,
     injector,
+    stripHtmlAndNormalize,
 } from '../../utils';
 import type { ITextInjection } from '../../types';
 import { defineComponent } from 'vue';
@@ -82,5 +83,47 @@ describe('injections utility functions', () => {
 
         const originalEl = document.getElementById('importantElement') as HTMLElement;
         expect(originalEl).toBeNull();
+    });
+
+    it('stripHtmlAndNormalize should strip HTML tags and normalize whitespace', () => {
+        const input = '   <div>  Hello   <strong>World</strong>!  </div>   ';
+        const expectedOutput = 'Hello World!';
+        const result = stripHtmlAndNormalize(input);
+        expect(result).toBe(expectedOutput);
+    });
+
+    it('stripHtmlAndNormalize should handle empty strings', () => {
+        const input = '';
+        const expectedOutput = '';
+        const result = stripHtmlAndNormalize(input);
+        expect(result).toBe(expectedOutput);
+    });
+
+    it('stripHtmlAndNormalize should handle strings with only whitespace', () => {
+        const input = '     ';
+        const expectedOutput = '';
+        const result = stripHtmlAndNormalize(input);
+        expect(result).toBe(expectedOutput);
+    });
+
+    it('stripHtmlAndNormalize should handle strings with only HTML tags', () => {
+        const input = '<div><strong></strong></div>';
+        const expectedOutput = '';
+        const result = stripHtmlAndNormalize(input);
+        expect(result).toBe(expectedOutput);
+    });
+
+    it('stripHtmlAndNormalize should normalize multiple spaces and newlines', () => {
+        const input = 'Hello\n\n\nWorld!  This    is a test.';
+        const expectedOutput = 'Hello World! This is a test.';
+        const result = stripHtmlAndNormalize(input);
+        expect(result).toBe(expectedOutput);
+    });
+
+    it('stripHtmlAndNormalize should preserve meaningful spaces', () => {
+        const input = 'Hello,  World!';
+        const expectedOutput = 'Hello, World!';
+        const result = stripHtmlAndNormalize(input);
+        expect(result).toBe(expectedOutput);
     });
 });
