@@ -96,6 +96,9 @@ const handleQuantityInjection = (injection: IDynamicTextInjection) => {
     }
 };
 
+// Fix website bug with wrong max count
+document.querySelector('input[data-pf-type="QuantityField"]')?.setAttribute('max', '5');
+
 handleTextInjections(textInjectionContent);
 handleButtonInjections(buttonInjectionContent);
 handleDateTimeInjection(dateTimeInjectionContent);
