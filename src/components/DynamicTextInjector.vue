@@ -1,9 +1,10 @@
 <script lang="ts">
+import type { ILinkedInput } from '@/types';
 import { defineComponent, type PropType } from 'vue';
 
 export default defineComponent({
     props: {
-        initialText: {
+        text: {
             type: String as PropType<string>,
             required: true,
         },
@@ -15,14 +16,7 @@ export default defineComponent({
             type: Number,
             default: 5, // Default maximum count
         },
-        linkedInputSelector: {
-            type: String as PropType<string>,
-            required: true,
-        },
-        linkedInputSelectorValue: {
-            type: String as PropType<string>,
-            required: true,
-        },
+        linkedInput: { type: Object as PropType<ILinkedInput>, required: true },
     },
     data() {
         return {
@@ -37,7 +31,7 @@ export default defineComponent({
     },
     computed: {
         formattedText(): string {
-            return this.initialText.replace(
+            return this.text.replace(
                 this.dynamicPlaceholder,
                 this.remainingItems.toString()
             );
@@ -46,7 +40,7 @@ export default defineComponent({
     mounted() {
         // Find the input element by its selector
         this.inputElement = document.querySelector(
-            `input[${this.linkedInputSelector}="${this.linkedInputSelectorValue}"]`
+            `input[${this.linkedInput.selector}="${this.linkedInput.value}"]`
         ) as HTMLInputElement;
         if (this.inputElement) {
             // Set initial value
@@ -63,5 +57,5 @@ export default defineComponent({
 </script>
 
 <template>
-    <p>{{ formattedText }}</p>
+    <p data-test="dynamicTextInjection">{{ formattedText }}</p>
 </template>
