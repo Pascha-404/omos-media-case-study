@@ -64,4 +64,20 @@ const dateTimeInjectionContent: IInjectionBase = {
     injectionType: 'dateTime',
     selector: { attribute: 'id', value: 'current-date-time' },
 };
-export { textInjectionContent, buttonInjectionContent, dateTimeInjectionContent };
+
+const availableItemsContent: ITextInjection = {
+    injectionType: 'dynamicText',
+    selector: { attribute: 'id', value: 'available-items' },
+    content: {
+        original: 'Please select between 1 and 5 products: Current total 4 more items',
+        translation:
+            'Bitte wählen Sie zwischen 1 und 5 Produkten: Aktuelle Gesamtmenge {count} weitere Artikel',
+    },
+};
+
+export {
+    textInjectionContent,
+    buttonInjectionContent,
+    dateTimeInjectionContent,
+    availableItemsContent,
+};
