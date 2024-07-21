@@ -14,7 +14,12 @@ import {
     buttonInjectionContent,
     dateTimeInjectionContent,
 } from './contentToInject';
-import type { IAttributes, IInjectorProps, ITextInjection } from './types';
+import type {
+    IAttributes,
+    IInjectionBase,
+    IInjectorProps,
+    ITextInjection,
+} from './types';
 
 // Function to handle text injections
 const handleTextInjections = (injections: ITextInjection[]) => {
@@ -70,5 +75,16 @@ const handleButtonInjections = (injections: ITextInjection[]) => {
     });
 };
 
+const handleDateTimeInjection = (injection: IInjectionBase) => {
+    const domElement = document.querySelector(`#${injection.selector.value}`);
+    
+    if (domElement instanceof HTMLElement) {
+        injector(DateTimeInjector, {
+            el: domElement,
+        });
+    }
+};
+
 handleTextInjections(textInjectionContent);
-handleButtonInjections(buttonInjectionContent)
+handleButtonInjections(buttonInjectionContent);
+handleDateTimeInjection(dateTimeInjectionContent);
