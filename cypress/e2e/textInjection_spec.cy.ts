@@ -20,13 +20,26 @@ describe('Text Injector', () => {
         cy.visit('/');
     });
 
-    it('injects translated text into the heading', () => {
+    it('injects translated text into the headings', () => {
         const expectedTranslations = getTextTranslations(
             textInjectionContent,
             'Heading2'
         );
 
         cy.get('h3[data-pf-type="Heading2"]').each(($el, index) => {
+            if (index < expectedTranslations.length) {
+                cy.wrap($el).should('have.html', expectedTranslations[index]);
+            }
+        });
+    });
+
+    it('injects translated text into the paragraphs', () => {
+        const expectedTranslations = getTextTranslations(
+            textInjectionContent,
+            'Paragraph3'
+        );
+
+        cy.get('p[data-pf-type="Paragraph3"').each(($el, index) => {
             if (index < expectedTranslations.length) {
                 cy.wrap($el).should('have.html', expectedTranslations[index]);
             }
