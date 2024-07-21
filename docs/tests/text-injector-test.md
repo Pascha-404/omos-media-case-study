@@ -40,7 +40,14 @@ describe('TextInjector.vue', () => {
         expect(renderedElement.attributes('class')).toBe('insert-sick-styling-here');
         expect(renderedElement.attributes('data-test')).toBe('test-me');
     });
+```
 
+#### Test 2: Updates and adds attributes
+
+- **Description**: This test checks if the `TextInjector` component updates and adds attributes to the existing element.
+- **Test Code**:
+
+```typescript
     it("Updates and add's attributes", () => {
         // Create a mock element
         const mockElement = document.createElement('button');
@@ -126,7 +133,14 @@ describe('Text Injector', () => {
             }
         });
     });
+```
 
+#### Test 2: Injects translated text into the paragraphs
+
+- **Description**: This test checks if the `TextInjector` component correctly injects the translated text into the paragraphs with the `data-pf-type="Paragraph3"` attribute.
+- **Test Code**:
+
+```typescript
     it('injects translated text into the paragraphs', () => {
         const expectedTranslations = getTextTranslations(
             textInjectionContent,

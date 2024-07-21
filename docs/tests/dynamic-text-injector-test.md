@@ -49,7 +49,14 @@ describe('DynamicTextInjector', () => {
 
         expect(wrapper.text()).toContain('Current total 4 more items');
     });
+```
 
+#### Test 2: Updates the text when input value changes
+
+- **Description**: This test checks if the `DynamicTextInjector` component updates the text correctly when the input value changes.
+- **Test Code**:
+
+```typescript
     it('updates the text when input value changes', async () => {
         const wrapper = mount(DynamicTextInjector, {
             props: {
@@ -100,7 +107,14 @@ describe('DynamicTextInjector E2E Test', () => {
             'Aktuelle Gesamtmenge 4 weitere Artikel'
         );
     });
+```
 
+#### Test 2: Updates the text when input value changes
+
+- **Description**: This test checks if the `DynamicTextInjector` component updates the text correctly when the input value changes.
+- **Test Code**:
+
+```typescript
     it('updates the text when input value changes', () => {
         // Change input value to 2
         cy.get('input[data-pf-type="QuantityField"]').clear();
@@ -146,3 +160,4 @@ npm run test:e2e:dev
 ```
 
 By maintaining a comprehensive suite of tests, we can ensure the reliability and correctness of the `DynamicTextInjector` component.
+"""
