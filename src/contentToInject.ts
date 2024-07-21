@@ -60,11 +60,8 @@ const buttonInjectionContent: ITextInjection[] = [
     },
 ];
 
-const dateTimeInjectionContent: IInjectionBase[] = [
-    {
-        injectionType: 'dateTime',
-        selector: { attribute: 'id', value: 'current-date-time' },
-    },
-];
-
+const dateTimeInjectionContent: IInjectionBase = {
+    injectionType: 'dateTime',
+    selector: { attribute: 'id', value: 'current-date-time' },
+};
 export { textInjectionContent, buttonInjectionContent, dateTimeInjectionContent };
