@@ -1,61 +1,96 @@
 # omos-media-case-study
 
-This template should help get you started developing with Vue 3 in Vite.
+This project addresses the task of ensuring proper translations and formatting for date, time, and currency on a Shopify site using the StayAI app. The provided functionality includes injecting HTML, CSS, and JavaScript to fix translation and formatting issues.
 
-## Recommended IDE Setup
+## Task Summary
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+We are using the Shopify app StayAI, but its user interface for customers is in English. Although custom translations can be added in the app settings, some translations are missing, and the formats for date and currency are sometimes incorrect. Neither support nor documentation provides assistance, and installing another app is not an option. In the settings, you find three text areas where HTML, CSS, and JavaScript can be added.
 
-## Type Support for `.vue` Imports in TS
+### Requirements:
+- Ensure that all translations are in German and that the formats for date, time, and currency are displayed correctly.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Customize configuration
+## Getting Started
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+To get started with this project, follow these steps:
 
-## Project Setup
+### Install Dependencies
 
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Run the Development Server
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Build the Application
 
-```sh
+To build the application for production, use:
+
+```bash
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Running Unit Tests
 
-```sh
+To run the unit tests, use the following command:
+
+```bash
 npm run test:unit
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+### Running E2E Tests
 
-```sh
-npm run test:e2e:dev
-```
+To run the E2E tests, use the following command:
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
+```bash
 npm run test:e2e
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Extended Documentation
 
-```sh
-npm run lint
+This project includes extended documentation, which can be accessed locally by running the documentation server:
+
+```bash
+npm run docs:dev
 ```
+
+## Project Structure
+
+```plaintext
+my-project/
+├── cypress
+│   └── e2e
+│       ├── buttonInjection_spec.cy.ts
+│       ├── dateTimeInjection_spec.cy.ts
+│       ├── dynamicTextInjector.cy.ts
+│       └── textInjection_spec.cy.ts
+├── docs
+│   └── README.md
+├── index.html
+├── package.json
+├── public
+├── README.md
+└── src
+    ├── components
+    │   ├── DateTimeInjector.vue
+    │   ├── DynamicTextInjector.vue
+    │   ├── __tests__
+    │   │   ├── DateTimeInjector.spec.ts
+    │   │   ├── DynamicTextInjector.spec.ts
+    │   │   ├── injectionsUtils.spec.ts
+    │   │   └── TextInjector.spec.ts
+    │   └── TextInjector.vue
+    ├── contentToInject.ts
+    ├── main.ts
+    ├── types.ts
+    └── utils
+        ├── attributesToObject.ts
+        ├── index.ts
+        └── injections.ts
+```
+
+For more detailed information, please refer to the extended documentation by running the documentation server.
