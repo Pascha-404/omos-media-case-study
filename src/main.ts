@@ -43,4 +43,32 @@ const handleTextInjections = (injections: ITextInjection[]) => {
     });
 };
 
+const handleButtonInjections = (injections: ITextInjection[]) => {
+    // Get all unique selector attributes
+    const selectorAttributes = getUniqueSelectorAttributes(injections);
+
+    // Iterate over each inque selector attribute
+    selectorAttributes.forEach((attribute) => {
+        // Find elements that have this attribute
+        const domElements = findElementsByAttribute(attribute);
+
+        domElements.forEach((el) => {
+            if (el instanceof HTMLElement) {
+                // Find the corresponding injection for this element
+                const matchingInjection = findInjection(el, attribute, injections);
+
+                if (matchingInjection) {
+                    // Inject component
+                    injector(TextInjector, {
+                        text: matchingInjection.content.translation,
+                        el: el,
+                        newAttributes: matchingInjection.newAttributes,
+                    });
+                }
+            }
+        });
+    });
+};
+
 handleTextInjections(textInjectionContent);
+handleButtonInjections(buttonInjectionContent)
