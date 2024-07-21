@@ -4,10 +4,16 @@ interface IAttributes {
     [key: string]: string;
 }
 
+interface ILinkedInput {
+    selector: string;
+    value: string;
+}
+
 interface IInjectorProps {
     text?: string;
     el: HTMLElement;
     newAttributes?: IAttributes;
+    linkedInput?: ILinkedInput;
 }
 
 interface IInjectionBase {
@@ -20,4 +26,15 @@ interface ITextInjection extends IInjectionBase {
     newAttributes?: IAttributes;
 }
 
-export type { IAttributes, IInjectionBase, ITextInjection, IInjectorProps };
+interface IDynamicTextInjection extends ITextInjection {
+    linkedInput: ILinkedInput;
+}
+
+export type {
+    IAttributes,
+    IInjectionBase,
+    ITextInjection,
+    IInjectorProps,
+    IDynamicTextInjection,
+    ILinkedInput,
+};
