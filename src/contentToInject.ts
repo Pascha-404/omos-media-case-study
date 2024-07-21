@@ -33,7 +33,7 @@ const textInjectionContent: ITextInjection[] = [
         injectionType: 'text',
         selector: { attribute: 'data-pf-type', value: 'Heading2' },
         content: {
-            original: 'Same day delivery if you ordet till:',
+            original: 'Same day delivery if you order till:',
             translation: 'Lieferung am selben Tag, wenn Sie bestellen bis:',
         },
     },
