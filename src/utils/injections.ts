@@ -1,5 +1,5 @@
-import { createApp, type Component } from "vue";
-import type { ITextInjection, IInjectorProps } from "@/types";
+import { createApp, type Component } from 'vue';
+import type { ITextInjection, IInjectorProps } from '@/types';
 
 // Get all unique selector attributes
 const getUniqueSelectorAttributes = (injections: ITextInjection[]): string[] => {
@@ -13,6 +13,14 @@ const findElementsByAttribute = (attribute: string): HTMLElement[] => {
     return Array.from(document.querySelectorAll(`[${attribute}]`));
 };
 
+// Utility function to strip HTML tags and normalize whitespace, including removing line breaks
+const stripHtmlAndNormalize = (html: string): string => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    const textContent = tmp.textContent || tmp.innerText || '';
+    return textContent.replace(/\s+/g, ' ').trim();
+};
+
 // Search for a matching injection that has the matching attribute and original content
 const findInjection = (
     el: HTMLElement,
@@ -22,7 +30,8 @@ const findInjection = (
     return injectionsArray.find(
         (injection) =>
             el.getAttribute(attribute) === injection.selector.value &&
-            el.innerHTML.trim() === injection.content.original.trim()
+            stripHtmlAndNormalize(el.innerHTML) ===
+                stripHtmlAndNormalize(injection.content.original)
     );
 };
 
@@ -39,4 +48,10 @@ const injector = (component: Component, props: IInjectorProps): void => {
     }
 };
 
-export {getUniqueSelectorAttributes, findElementsByAttribute, findInjection, injector}
+export {
+    getUniqueSelectorAttributes,
+    findElementsByAttribute,
+    findInjection,
+    injector,
+    stripHtmlAndNormalize,
+};
