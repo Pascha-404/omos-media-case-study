@@ -1,4 +1,3 @@
-import { createApp, type Component } from 'vue';
 import TextInjector from './components/TextInjector.vue';
 import DateTimeInjector from './components/DateTimeInjector.vue';
 
@@ -14,12 +13,7 @@ import {
     buttonInjectionContent,
     dateTimeInjectionContent,
 } from './contentToInject';
-import type {
-    IAttributes,
-    IInjectionBase,
-    IInjectorProps,
-    ITextInjection,
-} from './types';
+import type { IInjectionBase, ITextInjection } from './types';
 
 // Function to handle text injections
 const handleTextInjections = (injections: ITextInjection[]) => {
@@ -77,7 +71,7 @@ const handleButtonInjections = (injections: ITextInjection[]) => {
 
 const handleDateTimeInjection = (injection: IInjectionBase) => {
     const domElement = document.querySelector(`#${injection.selector.value}`);
-    
+
     if (domElement instanceof HTMLElement) {
         injector(DateTimeInjector, {
             el: domElement,
