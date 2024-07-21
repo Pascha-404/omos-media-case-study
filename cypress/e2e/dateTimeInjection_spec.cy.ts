@@ -7,10 +7,10 @@ describe('DateTime Injection', () => {
         const dateTimeRegex = /^\d{2}\.\d{2}\.\d{4}, \d{2}:\d{2}:\d{2}$/;
 
         // Check that the element exists
-        cy.get('#current-date-time').should('exist');
+        cy.get('#current-date-time-updated').should('exist');
 
         // Check that the element contains a valid date and time
-        cy.get('#current-date-time')
+        cy.get('#current-date-time-updated')
             .invoke('text')
             .should((text) => {
                 expect(text).to.match(dateTimeRegex);
