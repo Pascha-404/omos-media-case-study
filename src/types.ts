@@ -1,4 +1,4 @@
-type TInjectionType = 'text' | 'dateTime' | 'dynamicText';
+type TInjectionType = 'text' | 'dateTime' | 'dynamicText' | 'button';
 
 interface IAttributes {
     [key: string]: string;
@@ -9,6 +9,11 @@ interface ILinkedInput {
     value: string;
 }
 
+interface ISelector {
+    attribute: string;
+    value: string;
+}
+
 interface IInjectorProps {
     text?: string;
     el: HTMLElement;
@@ -16,9 +21,15 @@ interface IInjectorProps {
     linkedInput?: ILinkedInput;
 }
 
+interface IButtonInjectorProps {
+    text: string;
+    selector: ISelector;
+    newAttributes?: IAttributes;
+}
+
 interface IInjectionBase {
     injectionType: TInjectionType;
-    selector: { attribute: string; value: string };
+    selector: ISelector;
 }
 
 interface ITextInjection extends IInjectionBase {
@@ -32,9 +43,11 @@ interface IDynamicTextInjection extends ITextInjection {
 
 export type {
     IAttributes,
+    ISelector,
     IInjectionBase,
     ITextInjection,
     IInjectorProps,
     IDynamicTextInjection,
     ILinkedInput,
+    IButtonInjectorProps,
 };
