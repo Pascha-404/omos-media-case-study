@@ -1,5 +1,5 @@
 import { createApp, type Component } from 'vue';
-import type { ITextInjection, IInjectorProps } from '@/types';
+import type { ITextInjection, IInjectorProps, IButtonInjectorProps } from '@/types';
 
 // Get all unique selector attributes
 const getUniqueSelectorAttributes = (injections: ITextInjection[]): string[] => {
@@ -48,10 +48,26 @@ const injector = (component: Component, props: IInjectorProps): void => {
     }
 };
 
+const buttonInjector = (component: Component, props: IButtonInjectorProps): void => {
+    let vBtnMountpoint = document.querySelector('#v-btn-mountpoint');
+    if (!vBtnMountpoint) {
+        const newBtnMountpoint = document.createElement('div');
+        newBtnMountpoint.setAttribute('id', 'v-btn-mountpoint');
+        vBtnMountpoint = newBtnMountpoint;
+    }
+
+    const app = createApp(component, { ...props });
+
+    const newEl = document.createElement('div');
+    vBtnMountpoint.appendChild(newEl);
+    app.mount(newEl);
+};
+
 export {
     getUniqueSelectorAttributes,
     findElementsByAttribute,
     findInjection,
     injector,
     stripHtmlAndNormalize,
+    buttonInjector,
 };
