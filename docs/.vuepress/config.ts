@@ -14,6 +14,11 @@ export default defineUserConfig({
             },
             { text: 'Main.js', link: '/main.js/', collapsible: false },
             {
+                text: 'ContentToInject.ts',
+                link: '/contentToInject.ts/',
+                collapsible: false,
+            },
+            {
                 text: 'Components',
                 link: '/components/',
                 collapsible: false,
