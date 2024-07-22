@@ -49,7 +49,7 @@ const textInjectionContent: ITextInjection[] = [
 
 const buttonInjectionContent: ITextInjection[] = [
     {
-        injectionType: 'text',
+        injectionType: 'button',
         selector: { attribute: 'name', value: 'add' },
         content: { original: 'Add To Cart', translation: 'In den Warenkorb' },
         newAttributes: {
