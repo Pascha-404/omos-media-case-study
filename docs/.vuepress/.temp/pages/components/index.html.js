@@ -1,5 +1,5 @@
 import comp from "/home/patrick/Coding/projects/omos-media-case-study/docs/.vuepress/.temp/pages/components/index.html.vue"
-const data = JSON.parse("{\"path\":\"/components/\",\"title\":\"Components\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"components/README.md\"}")
+const data = JSON.parse("{\"path\":\"/components/\",\"title\":\"Components\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":1721601497000,\"contributors\":[{\"name\":\"Patrick Pavliuchik\",\"email\":\"73493957+Pascha-404@users.noreply.github.com\",\"commits\":1}]},\"filePathRelative\":\"components/README.md\"}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

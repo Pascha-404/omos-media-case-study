@@ -21,6 +21,7 @@ export default defineUserConfig({
                     '/components/date-time-injector.md',
                     '/components/dynamic-text-injector.md',
                     '/components/text-injector.md',
+                    '/components/button-injection.md',
                 ],
             },
             {
@@ -37,6 +38,7 @@ export default defineUserConfig({
                     '/tests/text-injector-test.md',
                     '/tests/dynamic-text-injector-test.md',
                     '/tests/date-time-injector-test.md',
+                    '/tests/button-injector-test.md',
                 ],
             },
         ],

@@ -36,22 +36,43 @@
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><h2 id="project-structure" tabindex="-1"><a class="header-anchor" href="#project-structure"><span>Project Structure</span></a></h2>
 <div class="language-plaintext line-numbers-mode" data-highlighter="prismjs" data-ext="plaintext" data-title="plaintext"><pre v-pre><code><span class="line">omos-media-case-study/</span>
 <span class="line">├── cypress</span>
-<span class="line">│   └── e2e</span>
-<span class="line">│       ├── buttonInjection_spec.cy.ts</span>
-<span class="line">│       ├── dateTimeInjection_spec.cy.ts</span>
-<span class="line">│       ├── dynamicTextInjector.cy.ts</span>
-<span class="line">│       └── textInjection_spec.cy.ts</span>
+<span class="line">│   ├── e2e</span>
+<span class="line">│   │   ├── buttonInjection_spec.cy.ts</span>
+<span class="line">│   │   ├── dateTimeInjection_spec.cy.ts</span>
+<span class="line">│   │   ├── dynamicTextInjector.cy.ts</span>
+<span class="line">│   │   └── textInjection_spec.cy.ts</span>
+<span class="line">│   └── screenshots</span>
 <span class="line">├── docs</span>
-<span class="line">│   └── README.md</span>
+<span class="line">│   ├── components</span>
+<span class="line">│   │   ├── button-injection.md</span>
+<span class="line">│   │   ├── date-time-injector.md</span>
+<span class="line">│   │   ├── dynamic-text-injector.md</span>
+<span class="line">│   │   ├── README.md</span>
+<span class="line">│   │   └── text-injector.md</span>
+<span class="line">│   ├── main.js</span>
+<span class="line">│   │   └── README.md</span>
+<span class="line">│   ├── README.md</span>
+<span class="line">│   ├── tests</span>
+<span class="line">│   │   ├── button-injector-test.md</span>
+<span class="line">│   │   ├── date-time-injector-test.md</span>
+<span class="line">│   │   ├── dynamic-text-injector-test.md</span>
+<span class="line">│   │   ├── README.md</span>
+<span class="line">│   │   └── text-injector-test.md</span>
+<span class="line">│   └── utils</span>
+<span class="line">│       ├── attributes-to-object.md</span>
+<span class="line">│       ├── injections.md</span>
+<span class="line">│       └── README.md</span>
 <span class="line">├── index.html</span>
 <span class="line">├── package.json</span>
 <span class="line">├── public</span>
 <span class="line">├── README.md</span>
 <span class="line">└── src</span>
 <span class="line">    ├── components</span>
+<span class="line">    │   ├── ButtonInjecton.vue</span>
 <span class="line">    │   ├── DateTimeInjector.vue</span>
 <span class="line">    │   ├── DynamicTextInjector.vue</span>
 <span class="line">    │   ├── __tests__</span>
+<span class="line">    │   │   ├── ButtonInjection.spec.ts</span>
 <span class="line">    │   │   ├── DateTimeInjector.spec.ts</span>
 <span class="line">    │   │   ├── DynamicTextInjector.spec.ts</span>
 <span class="line">    │   │   ├── injectionsUtils.spec.ts</span>
@@ -65,7 +86,7 @@
 <span class="line">        ├── index.ts</span>
 <span class="line">        └── injections.ts</span>
 <span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="documentation" tabindex="-1"><a class="header-anchor" href="#documentation"><span>Documentation</span></a></h2>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="documentation" tabindex="-1"><a class="header-anchor" href="#documentation"><span>Documentation</span></a></h2>
 <p>The documentation for this project is built using VuePress. The configuration can be found in the <code v-pre>docs/.vuepress/config.js</code> file.</p>
 <h2 id="license" tabindex="-1"><a class="header-anchor" href="#license"><span>License</span></a></h2>
 <p>This project is licensed under the MIT License.</p>
