@@ -1,59 +1,54 @@
-# main.js Documentation
+# Main.js
 
-This file contains the main logic to bootstrap the injection of content on the website. It imports various components and utilities, defines handler functions for different types of injections, and executes these handlers to modify the DOM.
+This file is the entry point for handling various injections in the application. It imports necessary components, utility functions, and content to inject into the DOM.
 
-## Imports
+## Imported Components
 
-The following components and utilities are imported:
+-   `TextInjector` - Component for injecting text.
+-   `DateTimeInjector` - Component for injecting date and time.
+-   `ButtonInjecton` - Component for injecting button attributes and text.
+-   `DynamicTextInjector` - Component for injecting dynamic text linked with input fields.
 
-- **Components**:
-  - `TextInjector` from `./components/TextInjector.vue`
-  - `DateTimeInjector` from `./components/DateTimeInjector.vue`
-  - `DynamicTextInjector` from `./components/DynamicTextInjector.vue`
+## Imported Utilities
 
-- **Utilities**:
-  - `getUniqueSelectorAttributes`
-  - `findElementsByAttribute`
-  - `findInjection`
-  - `injector`
-  - From `./utils/injections`
+-   `getUniqueSelectorAttributes` - Retrieves unique selector attributes from injections.
+-   `findElementsByAttribute` - Finds DOM elements by attribute.
+-   `findInjection` - Finds a matching injection for a DOM element.
+-   `injector` - Utility to inject a Vue component into a DOM element.
+-   `buttonInjector` - Utility to inject a button Vue component into a DOM element.
 
-- **Content to Inject**:
-  - `textInjectionContent`
-  - `buttonInjectionContent`
-  - `dateTimeInjectionContent`
-  - `availableItemsContent`
-  - From `./contentToInject`
+## Imported Content
 
-- **Types**:
-  - `IDynamicTextInjection`
-  - `IInjectionBase`
-  - `ITextInjection`
-  - From `./types`
+-   `textInjectionContent` - Content for text injections.
+-   `buttonInjectionContent` - Content for button injections.
+-   `dateTimeInjectionContent` - Content for date and time injections.
+-   `availableItemsContent` - Content for dynamic text injections linked with input fields.
 
 ## Functions
 
 ### `handleTextInjections`
 
-Handles the injection of text content into the DOM elements.
+Handles injecting text into DOM elements based on provided text injections.
+
+#### Parameters
+
+-   `injections: ITextInjection[]` - List of text injections.
+
+#### Process
+
+1. Retrieves unique selector attributes from the injections.
+2. Finds DOM elements matching each selector attribute.
+3. For each DOM element, finds the matching injection and injects the `TextInjector` component with the appropriate text.
 
 ```javascript
 const handleTextInjections = (injections: ITextInjection[]) => {
-    // Get all unique selector attributes
     const selectorAttributes = getUniqueSelectorAttributes(injections);
-
-    // Iterate over each unique selector attribute
     selectorAttributes.forEach((attribute) => {
-        // Find elements that have this attribute
         const domElements = findElementsByAttribute(attribute);
-
         domElements.forEach((el) => {
             if (el instanceof HTMLElement) {
-                // Find the corresponding injection for this element
                 const matchingInjection = findInjection(el, attribute, injections);
-
                 if (matchingInjection) {
-                    // Inject component
                     injector(TextInjector, {
                         text: matchingInjection.content.translation,
                         el: el,
@@ -64,48 +59,52 @@ const handleTextInjections = (injections: ITextInjection[]) => {
     });
 };
 ```
+
+---
 
 ### `handleButtonInjections`
 
-Handles the injection of button content and updates attributes.
+Handles injecting button components into the DOM.
+
+#### Parameters
+
+-   `injections: ITextInjection[]` - List of button injections.
+
+#### Process
+
+1. Iterates over each injection.
+2. Uses `buttonInjector` to inject the `ButtonInjecton` component with the appropriate text and attributes.
 
 ```javascript
-const handleButtonInjections = (injections: ITextInjection[]) => {
-    // Get all unique selector attributes
-    const selectorAttributes = getUniqueSelectorAttributes(injections);
-
-    // Iterate over each unique selector attribute
-    selectorAttributes.forEach((attribute) => {
-        // Find elements that have this attribute
-        const domElements = findElementsByAttribute(attribute);
-
-        domElements.forEach((el) => {
-            if (el instanceof HTMLElement) {
-                // Find the corresponding injection for this element
-                const matchingInjection = findInjection(el, attribute, injections);
-
-                if (matchingInjection) {
-                    // Inject component
-                    injector(TextInjector, {
-                        text: matchingInjection.content.translation,
-                        el: el,
-                        newAttributes: matchingInjection.newAttributes,
-                    });
-                }
-            }
+const handleButtonInjections = (injections: ITextInjection[]): void => {
+    injections.forEach((injection) => {
+        buttonInjector(ButtonInjecton, {
+            text: injection.content.translation,
+            newAttributes: injection.newAttributes,
+            selector: injection.selector,
         });
     });
 };
 ```
+
+---
 
 ### `handleDateTimeInjection`
 
-Handles the injection of the current date and time into a specific element.
+Handles injecting the date and time component into a DOM element.
+
+#### Parameters
+
+-   `injection: IInjectionBase` - Date and time injection object.
+
+#### Process
+
+1. Finds the DOM element by ID from the injection's selector value.
+2. Uses `injector` to inject the `DateTimeInjector` component into the found element.
 
 ```javascript
 const handleDateTimeInjection = (injection: IInjectionBase) => {
-    const domElement = document.querySelector(`#${injection.selector.value}`);
-
+    const domElement = document.querySelector(\`#\${injection.selector.value}\`);
     if (domElement instanceof HTMLElement) {
         injector(DateTimeInjector, {
             el: domElement,
@@ -113,15 +112,25 @@ const handleDateTimeInjection = (injection: IInjectionBase) => {
     }
 };
 ```
+
+---
 
 ### `handleQuantityInjection`
 
-Handles the injection of dynamic text based on the quantity input field.
+Handles injecting dynamic text linked with input fields into a DOM element.
+
+#### Parameters
+
+-   `injection: IDynamicTextInjection` - Dynamic text injection object.
+
+#### Process
+
+1. Finds the DOM element by ID from the injection's selector value.
+2. Uses `injector` to inject the `DynamicTextInjector` component into the found element with linked input properties.
 
 ```javascript
 const handleQuantityInjection = (injection: IDynamicTextInjection) => {
-    const domElement = document.querySelector(`#${injection.selector.value}`);
-
+    const domElement = document.querySelector(\`#\${injection.selector.value}\`);
     if (domElement instanceof HTMLElement) {
         injector(DynamicTextInjector, {
             el: domElement,
@@ -135,131 +144,21 @@ const handleQuantityInjection = (injection: IDynamicTextInjection) => {
 };
 ```
 
-## Fix for Website Bug
+---
 
-Sets the maximum count attribute of the quantity input field to 5.
+## Bug Fix
+
+Fixes a website bug by setting the max count attribute for quantity input fields.
 
 ```javascript
 document.querySelector('input[data-pf-type="QuantityField"]')?.setAttribute('max', '5');
 ```
 
-## Execution
+## Invocation
 
-Executes the handler functions to inject content into the website.
-
-```javascript
-handleTextInjections(textInjectionContent);
-handleButtonInjections(buttonInjectionContent);
-handleDateTimeInjection(dateTimeInjectionContent);
-handleQuantityInjection(availableItemsContent);
-```
-
-## Summary
-
-This `main.js` file is responsible for injecting various types of content into the website's DOM. It uses utility functions to find and inject the appropriate components into the target elements, ensuring that the content is dynamically updated based on the specified logic.
+Calls the functions to handle various injections.
 
 ```javascript
-import TextInjector from './components/TextInjector.vue';
-import DateTimeInjector from './components/DateTimeInjector.vue';
-
-import {
-    getUniqueSelectorAttributes,
-    findElementsByAttribute,
-    findInjection,
-    injector,
-} from './utils/injections';
-
-import {
-    textInjectionContent,
-    buttonInjectionContent,
-    dateTimeInjectionContent,
-    availableItemsContent,
-} from './contentToInject';
-import type { IDynamicTextInjection, IInjectionBase, ITextInjection } from './types';
-import DynamicTextInjector from './components/DynamicTextInjector.vue';
-
-// Function to handle text injections
-const handleTextInjections = (injections: ITextInjection[]) => {
-    // Get all unique selector attributes
-    const selectorAttributes = getUniqueSelectorAttributes(injections);
-
-    // Iterate over each unique selector attribute
-    selectorAttributes.forEach((attribute) => {
-        // Find elements that have this attribute
-        const domElements = findElementsByAttribute(attribute);
-
-        domElements.forEach((el) => {
-            if (el instanceof HTMLElement) {
-                // Find the corresponding injection for this element
-                const matchingInjection = findInjection(el, attribute, injections);
-
-                if (matchingInjection) {
-                    // Inject component
-                    injector(TextInjector, {
-                        text: matchingInjection.content.translation,
-                        el: el,
-                    });
-                }
-            }
-        });
-    });
-};
-
-const handleButtonInjections = (injections: ITextInjection[]) => {
-    // Get all unique selector attributes
-    const selectorAttributes = getUniqueSelectorAttributes(injections);
-
-    // Iterate over each unique selector attribute
-    selectorAttributes.forEach((attribute) => {
-        // Find elements that have this attribute
-        const domElements = findElementsByAttribute(attribute);
-
-        domElements.forEach((el) => {
-            if (el instanceof HTMLElement) {
-                // Find the corresponding injection for this element
-                const matchingInjection = findInjection(el, attribute, injections);
-
-                if (matchingInjection) {
-                    // Inject component
-                    injector(TextInjector, {
-                        text: matchingInjection.content.translation,
-                        el: el,
-                        newAttributes: matchingInjection.newAttributes,
-                    });
-                }
-            }
-        });
-    });
-};
-
-const handleDateTimeInjection = (injection: IInjectionBase) => {
-    const domElement = document.querySelector(`#${injection.selector.value}`);
-
-    if (domElement instanceof HTMLElement) {
-        injector(DateTimeInjector, {
-            el: domElement,
-        });
-    }
-};
-
-const handleQuantityInjection = (injection: IDynamicTextInjection) => {
-    const domElement = document.querySelector(`#${injection.selector.value}`);
-
-    if (domElement instanceof HTMLElement) {
-        injector(DynamicTextInjector, {
-            el: domElement,
-            text: injection.content.translation,
-            linkedInput: {
-                selector: injection.linkedInput.selector,
-                value: injection.linkedInput.value,
-            },
-        });
-    }
-};
-
-// Fix website bug with wrong max count
-document.querySelector('input[data-pf-type="QuantityField"]')?.setAttribute('max', '5');
-
 handleTextInjections(textInjectionContent);
 handleButtonInjections(buttonInjectionContent);
 handleDateTimeInjection(dateTimeInjectionContent);

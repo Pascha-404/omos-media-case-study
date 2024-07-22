@@ -73,28 +73,4 @@ describe('DateTime Injection', () => {
 });
 ```
 
-## Running the Tests
-
-### Running Unit Tests
-
-To run the unit tests, use the following command:
-
-```bash
-npm run test:unit
-```
-
-### Running E2E Tests
-
-To run the E2E tests, use the following command:
-
-```bash
-npm run test:e2e
-```
-
-To run the E2E tests in development mode, use the following command:
-
-```bash
-npm run test:e2e:dev
-```
-
 By maintaining a comprehensive suite of tests, we can ensure the reliability and correctness of the `DateTimeInjector` component.

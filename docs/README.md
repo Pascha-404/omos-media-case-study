@@ -68,27 +68,48 @@ npm run test:e2e:dev
 ```plaintext
 omos-media-case-study/
 ├── cypress
-│   └── e2e
-│       ├── buttonInjection_spec.cy.ts
-│       ├── dateTimeInjection_spec.cy.ts
-│       ├── dynamicTextInjector.cy.ts
-│       └── textInjection_spec.cy.ts
+│   ├── e2e
+│   │   ├── buttonInjection_spec.cy.ts
+│   │   ├── dateTimeInjection_spec.cy.ts
+│   │   ├── dynamicTextInjector.cy.ts
+│   │   └── textInjection_spec.cy.ts
+│   └── screenshots
 ├── docs
-│   └── README.md
+│   ├── components
+│   │   ├── button-injection.md
+│   │   ├── date-time-injector.md
+│   │   ├── dynamic-text-injector.md
+│   │   ├── README.md
+│   │   └── text-injector.md
+│   ├── main.js
+│   │   └── README.md
+│   ├── README.md
+│   ├── tests
+│   │   ├── button-injector-test.md
+│   │   ├── date-time-injector-test.md
+│   │   ├── dynamic-text-injector-test.md
+│   │   ├── README.md
+│   │   └── text-injector-test.md
+│   └── utils
+│       ├── attributes-to-object.md
+│       ├── injections.md
+│       └── README.md
 ├── index.html
 ├── package.json
 ├── public
 ├── README.md
 └── src
     ├── components
-    │   ├── DateTimeInjector.vue
-    │   ├── DynamicTextInjector.vue
-    │   ├── __tests__
-    │   │   ├── DateTimeInjector.spec.ts
-    │   │   ├── DynamicTextInjector.spec.ts
-    │   │   ├── injectionsUtils.spec.ts
-    │   │   └── TextInjector.spec.ts
-    │   └── TextInjector.vue
+    │   ├── ButtonInjecton.vue
+    │   ├── DateTimeInjector.vue
+    │   ├── DynamicTextInjector.vue
+    │   ├── __tests__
+    │   │   ├── ButtonInjection.spec.ts
+    │   │   ├── DateTimeInjector.spec.ts
+    │   │   ├── DynamicTextInjector.spec.ts
+    │   │   ├── injectionsUtils.spec.ts
+    │   │   └── TextInjector.spec.ts
+    │   └── TextInjector.vue
     ├── contentToInject.ts
     ├── main.ts
     ├── types.ts
